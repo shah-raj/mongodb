@@ -20,7 +20,8 @@ router.post('/', (req, res) => {
 function insertRecord(req, res) {
     var employee = new Employee();
     employee.fullName = req.body.fullName;
-    employee.email = req.body.email;
+    employee.salary = req.body.salary;
+    employee.dept = req.body.dept;
     employee.mobile = req.body.mobile;
     employee.city = req.body.city;
     employee.save((err, doc) => {
@@ -59,13 +60,14 @@ function updateRecord(req, res) {
 
 
 router.get('/list', (req, res) => {
-    Employee.find((err, docs) => {
+    Employee.find({}).lean()
+    .exec((err, docs) => {
         if (!err) {
-            // res.render("employee/list", {
-            //     list: docs
-            // },
-            // console.log(docs));
-            res.json(docs);
+            res.render("employee/list", {
+                list: docs
+            },
+            console.log(docs));
+            // res.json(docs);
         }
         else {
             console.log('Error in retrieving employee list :' + err);
@@ -80,8 +82,14 @@ function handleValidationError(err, body) {
             case 'fullName':
                 body['fullNameError'] = err.errors[field].message;
                 break;
-            case 'email':
-                body['emailError'] = err.errors[field].message;
+            case 'dept':
+                body['deptError'] = err.errors[field].message;
+                break;
+            case 'salary':
+                body['salaryError'] = err.errors[field].message;
+                break;
+            case 'mobile':
+                body['mobileError'] = err.errors[field].message;
                 break;
             default:
                 break;

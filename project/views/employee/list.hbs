@@ -2,8 +2,9 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Full Name</th>
-            <th>Email</th>
+            <th>Name</th>
+            <th>Salary</th>
+            <th>Dept</th>
             <th>Mobile</th>
             <th>City</th>
             <th></th>
@@ -12,8 +13,9 @@
     <tbody>
         {{#each list}}
         <tr>
-            <td>{{this}}</td>
-            <td>{{this.email}}</td>
+            <td>{{this.fullName}}</td>
+            <td>{{this.salary}}</td>
+            <td>{{this.dept}}</td>
             <td>{{this.mobile}}</td>
             <td>{{this.city}}</td>
             <td>
@@ -24,3 +26,9 @@
         {{/each}}
     </tbody>
 </table>
+<div>
+    <a class="btn btn-secondary" href="/employee/"><i class="fa fa-list-alt"></i> Insert</a>
+    <a class="btn btn-secondary" href="/employee/list"><i class="fa fa-list-alt"></i> Read/Show</a>
+    <a class="btn btn-secondary" href="/employee/list"><i class="fa fa-list-alt"></i> Update</a>
+    <a class="btn btn-secondary" href="/employee/list"><i class="fa fa-list-alt"></i> Delete</a>
+</div>
